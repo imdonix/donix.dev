@@ -1,0 +1,17 @@
+{{ define "title" }}{{ .Title }} | donix.dev{{ end }}
+
+{{ define "head" }}
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+{{ end }}
+
+{{ define "content" }}
+    <div class="content-body" >
+        <span class="content-link"><a href="/">donix.dev</a> / {{ .Title }}</span>
+        {{ .Content }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+{{ end }}
+
+{{ template "main.html" . }}

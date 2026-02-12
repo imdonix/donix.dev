@@ -1,0 +1,47 @@
+{{ define "title" }}{{ .Title }} | donix.dev{{ end }}
+
+{{ define "content" }}
+<div class="home-container">
+    <header class="home-header">
+        <div class="home-text">
+            <h1 class="home-title">Magyar Tamás</h1>
+            <p class="home-subtitle">Software Engineer | Game Developer</p>
+
+            <div class="home-socials">
+                <a href="https://x.com/imdonix" target="_blank">X</a>
+                <span class="dot-separator">•</span>
+                <a href="https://github.com/imdonix" target="_blank">GitHub</a>
+                <span class="dot-separator">•</span>
+                <a href="https://linkedin.com/in/imdonix" target="_blank">LinkedIn</a>
+                <span class="dot-separator">•</span>
+                <a href="mailto:tamas.donix@gmail.com" target="_blank">Mail</a>
+            </div>
+        </div>
+        <img src="https://avatars.githubusercontent.com/u/8947574?v=4" alt="Magyar Tamás" class="home-avatar">
+    </header>
+
+    <div class="home-intro">
+        <p>I thrive both independently and as part of large teams. I am skilled at understanding, maintaining, and enhancing existing projects, while also capable of designing and implementing new solutions from the ground up with a fresh perspective.</p>
+        <p>This is my website, where I share the experiences I gained while developing various applications.</p>
+    </div>
+</div>
+
+<div class="article-section">
+    <div class="article-grid">
+        {{ range .Articles }}
+        <a href="{{ .Path }}" class="article-card">
+            {{ if .Meta.image }}
+            <img src="{{ .Meta.image }}" alt="{{ .Title }} screenshot">
+            {{ end }}
+            <div class="article-card-content">
+                <h3 class="article-card-title">{{ .Title }}</h3>
+                <p class="article-card-description">{{ .Meta.description }}</p>
+                <p class="article-open">-> Read more</p>
+            </div>
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+
+{{ template "main.html" . }}
