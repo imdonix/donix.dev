@@ -19,6 +19,7 @@ type Page struct {
 	Title    string                 `yaml:"title"`
 	Template string                 `yaml:"template"`
 	Path     string                 `yaml:"path"`
+	Date     time.Time              `yaml:"date"`
 	Meta     map[string]any 		`yaml:"meta"`
 	Content  template.HTML
 }
@@ -32,6 +33,7 @@ type Article struct {
 	Path  string
 	Title string
 	Meta  map[string]any
+	Date  time.Time
 }
 
 const (
@@ -91,15 +93,15 @@ func buildSite() error {
 					Path:  page.Path,
 					Title: page.Title,
 					Meta:  page.Meta,
+					Date:  page.Date,
 				})
 			}
 			pages = append(pages, page)
 		}
 	}
 
-	// Sort projects or handle them as needed
 	sort.Slice(articles, func(i, j int) bool {
-		return articles[i].Title < articles[j].Title
+		return articles[i].Date.After(articles[j].Date)
 	})
 
 	for _, page := range pages {
@@ -163,6 +165,10 @@ func parseMarkdownFile(filePath string) (Page, error) {
 	var page Page
 	if err := yaml.Unmarshal([]byte(parts[1]), &page); err != nil {
 		return Page{}, fmt.Errorf("failed to unmarshal front matter in %s: %w", filePath, err)
+	}
+
+	if page.Date.IsZero() && page.Template == "article" {
+		log.Printf("Warning: 'date' field missing or invalid in front matter for %s. Articles should have a date.", filePath)
 	}
 
 	htmlContent := markdown.ToHTML([]byte(parts[2]), nil, nil)

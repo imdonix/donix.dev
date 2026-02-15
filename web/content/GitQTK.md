@@ -2,6 +2,7 @@
 title: "git-qtk"
 template: "article"
 path: "/git-qtk/"
+date: 2025-02-05
 meta:
   description: "git-qtk (Git Query Toolkit) is a command-line tool that lets you query Git repository metadata—like commits, authors, and files—using a simple, declarative SQL-like language in YAML files."
   image: ""

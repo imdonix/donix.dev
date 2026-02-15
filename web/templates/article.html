@@ -1,12 +1,14 @@
 {{ define "title" }}{{ .Title }} | donix.dev{{ end }}
 
 {{ define "head" }}
+<link rel="stylesheet" href="/main.css"/>
 <link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 {{ end }}
 
 {{ define "content" }}
     <div class="content-body" >
-        <span class="content-link"><a href="/">donix.dev</a> / {{ .Title }}</span>
+        <span class="content-link">[{{ .Date.Format "2006-01-02" }}] <a href="/">donix.dev</a> / {{ .Title }} </span>
+        <p class="article-date"></p>
         {{ .Content }}
     </div>
 

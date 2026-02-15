@@ -1,5 +1,9 @@
 {{ define "title" }}{{ .Title }} | donix.dev{{ end }}
 
+{{ define "head" }}
+<link rel="stylesheet" href="/main.css"/>
+{{ end }}
+
 {{ define "content" }}
 <div class="home-container">
     <header class="home-header">
@@ -21,7 +25,11 @@
     </header>
 
     <div class="home-intro">
-        <p>I thrive both independently and as part of large teams. I am skilled at understanding, maintaining, and enhancing existing projects, while also capable of designing and implementing new solutions from the ground up with a fresh perspective.</p>
+        <p>
+            I’m the guy teams call when something’s broken, unclear, or just plain tricky. I’ll dive in,
+            make sense of it, and get it fixed or built right. I’m equally comfortable maintaining and
+            improving large existing codebases as I am starting fresh projects from the ground up.
+        </p>
         <p>This is my website, where I share the experiences I gained while developing various applications.</p>
     </div>
 </div>
@@ -35,6 +43,7 @@
             {{ end }}
             <div class="article-card-content">
                 <h3 class="article-card-title">{{ .Title }}</h3>
+                <span class="article-card-date">[{{ .Date.Format "2006-01-02" }}]</span>
                 <p class="article-card-description">{{ .Meta.description }}</p>
                 <p class="article-open">-> Read more</p>
             </div>

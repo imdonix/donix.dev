@@ -180,7 +180,13 @@ footer a {
 .article-card-title {
   font-size: 1.25rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+}
+
+.article-card-date {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .article-card-description {
@@ -211,6 +217,24 @@ footer a {
 .content-link {
   color: var(--text-secondary);
   font-family: var(--mono-font);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+}
+
+.article-date {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 0.1rem;
+  margin-bottom: 1.5rem;
+  display: block;
 }
 
 .content-body pre {
