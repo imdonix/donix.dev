@@ -4,7 +4,7 @@ template: "article"
 path: "/factoisle/"
 meta:
   description: "FactoIsle is a base-building, automation, and sandbox indie game developed using the Unity Engine. It features procedural terrain generation, a chunk-based world system, flexible save system, and complex automation mechanics, including pipe and item transport systems."
-  image: "/images/factoisle_chunk.png"
+  image: "/images/factoisle_pipes.png"
 ---
 
 # Making FactoIsle
@@ -41,15 +41,15 @@ if (tag.Has("itemInMouth"))
 }
 ```
 
-## Item Tubes
-A core objective in FactoIsle is to automate production lines by connecting machine inputs and outputs. This is achieved through the item tube system. Tubes can be placed as blocks, and upon placement, the world triggers a tube system reload. This process connects all tubes into systems, taking into account the inputs and outputs of machines via their ports.
+## Pipes
+A core objective in FactoIsle is to automate production lines by connecting machine inputs and outputs. This is achieved through the item and fluid pipe system. Pipes can be placed as blocks, and upon placement, the world triggers a tube system reload. This process connects all pipes into systems, taking into account the inputs and outputs of machines via their ports.
 
 <img
-  src="/images/factoisle_tubes.png"
-  alt="Tubes"
+  src="/images/factoisle_pipes.png"
+  alt="Pipes"
 />
 
-Tubes possess internal storage and tick mechanisms similar to entities, with their contents saved using the same data container system.
+Pipes possess internal storage and tick mechanisms similar to entities, with their contents saved using the same data container system.
 
 ## Multiblocks
 Machines in FactoIsle are constructed by arranging specific blocks in predefined patterns to form multiblocks.
