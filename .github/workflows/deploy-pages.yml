@@ -31,7 +31,7 @@ jobs:
             ${{ runner.os }}-go-
 
       - name: Build static site
-        run: go run ./cmd
+        run: go run ./gen
 
       - name: Verify dist folder
         run: |

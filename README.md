@@ -4,8 +4,9 @@
 
 ```bash
 # Build the static site
-go run ./cmd
+go run ./gen
 
-# Serve it
-serve ./dist
+# Serve the built sataic site.
+npm install --global serve 
+serve _dist
 ```
