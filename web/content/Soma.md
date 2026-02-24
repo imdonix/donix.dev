@@ -6,6 +6,10 @@ date: 2025-06-03
 meta:
   description: "SOMA (Sport Organization Management) is a web application designed for the administration of sports clubs and organizations. The application provides features to manage member information, events, payments, and documents."
   image: "/images/soma-calenda.png"
+tags:
+  - TS
+  - Vue3
+  - Node.js
 ---
 
 # Sport Organization Management

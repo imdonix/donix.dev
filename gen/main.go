@@ -20,13 +20,15 @@ type Page struct {
 	Template string                 `yaml:"template"`
 	Path     string                 `yaml:"path"`
 	Date     time.Time              `yaml:"date"`
-	Meta     map[string]any 		`yaml:"meta"`
+	Meta     map[string]any         `yaml:"meta"`
+	Tags     []string               `yaml:"tags"`
 	Content  template.HTML
 }
 
 type HomePage struct {
 	Page
 	Articles []Article
+	AllTags  []string
 }
 
 type Article struct {
@@ -34,6 +36,7 @@ type Article struct {
 	Title string
 	Meta  map[string]any
 	Date  time.Time
+	Tags  []string
 }
 
 const (
@@ -94,6 +97,7 @@ func buildSite() error {
 					Title: page.Title,
 					Meta:  page.Meta,
 					Date:  page.Date,
+					Tags:  page.Tags,
 				})
 			}
 			pages = append(pages, page)
@@ -104,6 +108,20 @@ func buildSite() error {
 		return articles[i].Date.After(articles[j].Date)
 	})
 
+	// Collect all unique tags
+	uniqueTags := make(map[string]bool)
+	for _, article := range articles {
+		for _, tag := range article.Tags {
+			uniqueTags[tag] = true
+		}
+	}
+
+	var allTags []string
+	for tag := range uniqueTags {
+		allTags = append(allTags, tag)
+	}
+	sort.Strings(allTags)
+
 	for _, page := range pages {
 		outputPath := filepath.Join(page.Path, "index.html")
 		templateName := page.Template + ".html"
@@ -113,6 +131,7 @@ func buildSite() error {
 			data = HomePage{
 				Page:     page,
 				Articles: articles,
+				AllTags:  allTags,
 			}
 		} else {
 			data = page
@@ -166,6 +185,14 @@ func parseMarkdownFile(filePath string) (Page, error) {
 	if err := yaml.Unmarshal([]byte(parts[1]), &page); err != nil {
 		return Page{}, fmt.Errorf("failed to unmarshal front matter in %s: %w", filePath, err)
 	}
+
+	if page.Meta == nil {
+		page.Meta = make(map[string]any)
+	}
+	if len(page.Tags) > 0 {
+		page.Meta["tags"] = page.Tags
+	}
+
 
 	if page.Date.IsZero() && page.Template == "article" {
 		log.Printf("Warning: 'date' field missing or invalid in front matter for %s. Articles should have a date.", filePath)

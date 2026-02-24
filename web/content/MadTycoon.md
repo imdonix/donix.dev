@@ -6,6 +6,9 @@ date: 2024-05-10
 meta:
   description: "Mad Tycoon is a 2D real-time park management simulation game developed using Java, exploring its gameplay, technical architecture, and development challenges."
   image: "/images/madtycoon-gameplay.png"
+tags:
+  - Java
+  - GameDev
 ---
 
 # Mad Tycoon: 2D Park Management Simulation

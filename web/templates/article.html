@@ -6,14 +6,19 @@
 {{ end }}
 
 {{ define "content" }}
-    <div class="content-body" >
-        <span class="content-link">[{{ .Date.Format "2006-01-02" }}] <a href="/">donix.dev</a> / {{ .Title }} </span>
-        <p class="article-date"></p>
-        {{ .Content }}
-    </div>
+<div class="content-body" >
+    <span class="content-link">[{{ .Date.Format "2006-01-02" }}] <a href="/">donix.dev</a> / {{ .Title }} </span>
+            <div class="article-tags">
+                {{ range .Tags }}
+                    <a href="/#{{ . }}" class="tag-pill">{{ . }}</a>
+                {{ end }}
+            </div>
+    <p class="article-date"></p>
+    {{ .Content }}
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/plugins/autoloader/prism-autoloader.min.js"></script>
 {{ end }}
 
 {{ template "main.html" . }}

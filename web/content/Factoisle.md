@@ -6,6 +6,10 @@ date: 2025-08-05
 meta:
   description: "FactoIsle is a base-building, automation, and sandbox indie game developed using the Unity Engine. It features procedural terrain generation, a chunk-based world system, flexible save system, and complex automation mechanics, including pipe and item transport systems."
   image: "/images/factoisle_pipes.png"
+tags:
+  - UnityEngine
+  - CSharp
+  - GameDev
 ---
 
 # Making FactoIsle

@@ -35,14 +35,25 @@
 </div>
 
 <div class="article-section">
+    <div class="tag-filter">
+        <span class="tag-filter-pill active" data-tag="All">All</span>
+        {{ range .AllTags }}
+            <span class="tag-filter-pill" data-tag="{{ . }}">{{ . }}</span>
+        {{ end }}
+    </div>
     <div class="article-grid">
         {{ range .Articles }}
-        <a href="{{ .Path }}" class="article-card">
+        <a href="{{ .Path }}" class="article-card" data-tags="{{ range .Tags }}{{ . }} {{ end }}">
             {{ if .Meta.image }}
             <img src="{{ .Meta.image }}" alt="{{ .Title }} screenshot">
             {{ end }}
             <div class="article-card-content">
                 <h3 class="article-card-title">{{ .Title }}</h3>
+                <div class="article-tags">
+                    {{ range .Tags }}
+                        <span class="tag-pill">{{ . }}</span>
+                    {{ end }}
+                </div>
                 <p class="article-card-description">{{ .Meta.description }}</p>
                 <p class="article-open">-> Read more</p>
             </div>
@@ -50,6 +61,9 @@
         {{ end }}
     </div>
 </div>
+
+<script src="home.js"></script>
 {{ end }}
+
 
 {{ template "main.html" . }}
